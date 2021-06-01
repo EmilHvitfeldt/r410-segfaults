@@ -8,7 +8,7 @@ kick_rec <- recipe(~ blurb, data = kickstarter) %>%
 
 kick_prep <- prep(kick_rec)
 
-#' Above code with segfault by itself.
+#' Above code with segfault by itself (sometimes, see line 25)
 #' If you call `debugonce(table)` and press `continue`, it will crash
 #' If you call `debugnoce(table)` and press `next` a lot it will not crash
 #' If you call `debugonce(textrecipes:::step_tokenfilter_new)` it will crash.
@@ -19,7 +19,10 @@ kick_prep <- prep(kick_rec)
 #' The error only appears if the code is run in this order. Code runs correctly
 #' if run in order 123 -> 9 -> 567 -> 9
 #'
-#' Sometimes this code returns the following error:
+#' If the object that is passed to `table()` is saved to file, read back in and
+#' passed to `table()`, then no error happens.
+#'
+#' Sometimes this code returns the following error instead:
 #'
 #' Error in match(levels, exclude) :
 #'   'translateCharUTF8' must be called on a CHARSXP, but got 'builtin'
